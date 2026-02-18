@@ -2,9 +2,11 @@ package com.app.moviecatalog.v1.domain;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.domain.Persistable;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
@@ -15,7 +17,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table("shows")
-public class Show {
+@Builder
+public class Show implements Persistable<UUID> {
 
     @Id
     private UUID id;
@@ -24,4 +27,9 @@ public class Show {
     private UUID theatreId;
     private LocalDateTime showTime;
     private BigDecimal price;
+
+    @Override
+    public boolean isNew() {
+        return true;
+    }
 }
