@@ -1,6 +1,6 @@
 package com.app.moviecatalog.v1.repository;
 
-import com.app.moviecatalog.v1.domain.Movie;
+import com.app.moviecatalog.v1.domain.ScreenSeat;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
@@ -8,10 +8,8 @@ import reactor.core.publisher.Flux;
 import java.util.UUID;
 
 @Repository
-public interface MovieRepository
-        extends ReactiveCrudRepository<Movie, UUID> {
+public interface ScreenSeatTemplateRepository
+        extends ReactiveCrudRepository<ScreenSeat, UUID> {
 
-    Flux<Movie> findByActiveTrue();
-
-    Flux<Movie> findByTitleContainingIgnoreCaseAndActiveTrue(String title);
+    Flux<ScreenSeat> findByScreenId(UUID screenId);
 }

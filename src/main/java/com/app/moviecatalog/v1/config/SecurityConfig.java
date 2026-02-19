@@ -31,6 +31,8 @@ public class SecurityConfig {
             .authorizeExchange(exchange -> exchange
                 .pathMatchers(HttpMethod.GET, "/movies/**").permitAll()
                 .pathMatchers(HttpMethod.POST, "/movies/admin").hasRole("ADMIN")
+                .pathMatchers(HttpMethod.POST, "/screens/admin").hasRole("ADMIN")
+                .pathMatchers(HttpMethod.POST, "/shows/admin").hasRole("ADMIN")
                 .anyExchange().authenticated()
             )
             .oauth2ResourceServer(oauth2 ->

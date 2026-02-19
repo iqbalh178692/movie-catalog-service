@@ -19,7 +19,6 @@ public class MovieRouter {
             .GET("/movies", handler::getAllMovies)
             .GET("/movies/search", handler::searchMovies)
             .GET("/movies/{id}", handler::getMovie)
-            .GET("/movies/{movieId}/shows", handler::getShows)
 
             // Admin endpoint
             .POST("/movies/admin", handler::create)

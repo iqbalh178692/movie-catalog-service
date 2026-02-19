@@ -218,95 +218,95 @@ class MovieRouterTest {
 
     // ============ GET /movies/{movieId}/shows Tests ============
 
-    @Test
-    @DisplayName("Should map GET /movies/{movieId}/shows route with city parameter")
-    void route_GetShows_ShouldMap() {
-        when(movieHandler.getShows(any()))
-            .thenReturn(ServerResponse.ok().bodyValue("[]"));
-
-        webTestClient.get()
-            .uri("/movies/" + VALID_UUID + "/shows?city=Paris")
-            .headers(httpHeaders -> httpHeaders.putAll(HTTP_HEADERS_BASIC.get()))
-            .exchange()
-            .expectStatus().isOk();
-    }
-
-    @Test
-    @DisplayName("Should return shows for valid movie and city")
-    void route_GetShows_ValidMovieAndCity() {
-        when(movieHandler.getShows(any()))
-            .thenReturn(ServerResponse.ok().bodyValue("[]"));
-
-        webTestClient.get()
-            .uri("/movies/" + VALID_UUID + "/shows?city=Mumbai")
-            .exchange()
-            .expectStatus().isOk();
-    }
-
-    @Test
-    @DisplayName("Should handle get shows with different cities")
-    void route_GetShows_DifferentCities() {
-        when(movieHandler.getShows(any()))
-            .thenReturn(ServerResponse.ok().bodyValue("[]"));
-
-        webTestClient.get()
-            .uri("/movies/" + VALID_UUID + "/shows?city=Bangalore")
-            .exchange()
-            .expectStatus().isOk();
-
-        webTestClient.get()
-            .uri("/movies/" + VALID_UUID + "/shows?city=Delhi")
-            .exchange()
-            .expectStatus().isOk();
-    }
-
-    @Test
-    @DisplayName("Should handle get shows without city parameter")
-    void route_GetShows_WithoutCityParam() {
-        when(movieHandler.getShows(any()))
-            .thenReturn(ServerResponse.badRequest().build());
-
-        webTestClient.get()
-            .uri("/movies/" + VALID_UUID + "/shows")
-            .exchange()
-            .expectStatus().isBadRequest();
-    }
-
-    @Test
-    @DisplayName("Should return empty shows list for valid movie")
-    void route_GetShows_EmptyResult() {
-        when(movieHandler.getShows(any()))
-            .thenReturn(ServerResponse.ok().bodyValue("[]"));
-
-        webTestClient.get()
-            .uri("/movies/" + VALID_UUID + "/shows?city=UnknownCity")
-            .exchange()
-            .expectStatus().isOk();
-    }
-
-    @Test
-    @DisplayName("Should handle invalid movie ID in shows endpoint")
-    void route_GetShows_InvalidMovieId() {
-        when(movieHandler.getShows(any()))
-            .thenReturn(ServerResponse.notFound().build());
-
-        webTestClient.get()
-            .uri("/movies/invalid-uuid/shows?city=Mumbai")
-            .exchange()
-            .expectStatus().isNotFound();
-    }
-
-    @Test
-    @DisplayName("Should handle shows endpoint with special characters in city")
-    void route_GetShows_SpecialCharactersInCity() {
-        when(movieHandler.getShows(any()))
-            .thenReturn(ServerResponse.ok().bodyValue("[]"));
-
-        webTestClient.get()
-            .uri("/movies/" + VALID_UUID + "/shows?city=New+York")
-            .exchange()
-            .expectStatus().isOk();
-    }
+//    @Test
+//    @DisplayName("Should map GET /movies/{movieId}/shows route with city parameter")
+//    void route_GetShows_ShouldMap() {
+//        when(movieHandler.getShows(any()))
+//            .thenReturn(ServerResponse.ok().bodyValue("[]"));
+//
+//        webTestClient.get()
+//            .uri("/movies/" + VALID_UUID + "/shows?city=Paris")
+//            .headers(httpHeaders -> httpHeaders.putAll(HTTP_HEADERS_BASIC.get()))
+//            .exchange()
+//            .expectStatus().isOk();
+//    }
+//
+//    @Test
+//    @DisplayName("Should return shows for valid movie and city")
+//    void route_GetShows_ValidMovieAndCity() {
+//        when(movieHandler.getShows(any()))
+//            .thenReturn(ServerResponse.ok().bodyValue("[]"));
+//
+//        webTestClient.get()
+//            .uri("/movies/" + VALID_UUID + "/shows?city=Mumbai")
+//            .exchange()
+//            .expectStatus().isOk();
+//    }
+//
+//    @Test
+//    @DisplayName("Should handle get shows with different cities")
+//    void route_GetShows_DifferentCities() {
+//        when(movieHandler.getShows(any()))
+//            .thenReturn(ServerResponse.ok().bodyValue("[]"));
+//
+//        webTestClient.get()
+//            .uri("/movies/" + VALID_UUID + "/shows?city=Bangalore")
+//            .exchange()
+//            .expectStatus().isOk();
+//
+//        webTestClient.get()
+//            .uri("/movies/" + VALID_UUID + "/shows?city=Delhi")
+//            .exchange()
+//            .expectStatus().isOk();
+//    }
+//
+//    @Test
+//    @DisplayName("Should handle get shows without city parameter")
+//    void route_GetShows_WithoutCityParam() {
+//        when(movieHandler.getShows(any()))
+//            .thenReturn(ServerResponse.badRequest().build());
+//
+//        webTestClient.get()
+//            .uri("/movies/" + VALID_UUID + "/shows")
+//            .exchange()
+//            .expectStatus().isBadRequest();
+//    }
+//
+//    @Test
+//    @DisplayName("Should return empty shows list for valid movie")
+//    void route_GetShows_EmptyResult() {
+//        when(movieHandler.getShows(any()))
+//            .thenReturn(ServerResponse.ok().bodyValue("[]"));
+//
+//        webTestClient.get()
+//            .uri("/movies/" + VALID_UUID + "/shows?city=UnknownCity")
+//            .exchange()
+//            .expectStatus().isOk();
+//    }
+//
+//    @Test
+//    @DisplayName("Should handle invalid movie ID in shows endpoint")
+//    void route_GetShows_InvalidMovieId() {
+//        when(movieHandler.getShows(any()))
+//            .thenReturn(ServerResponse.notFound().build());
+//
+//        webTestClient.get()
+//            .uri("/movies/invalid-uuid/shows?city=Mumbai")
+//            .exchange()
+//            .expectStatus().isNotFound();
+//    }
+//
+//    @Test
+//    @DisplayName("Should handle shows endpoint with special characters in city")
+//    void route_GetShows_SpecialCharactersInCity() {
+//        when(movieHandler.getShows(any()))
+//            .thenReturn(ServerResponse.ok().bodyValue("[]"));
+//
+//        webTestClient.get()
+//            .uri("/movies/" + VALID_UUID + "/shows?city=New+York")
+//            .exchange()
+//            .expectStatus().isOk();
+//    }
 
     // ============ POST /movies/admin Tests ============
 

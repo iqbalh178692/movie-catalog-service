@@ -28,7 +28,7 @@ public class MovieHandler {
         final String title = request.queryParam("title").orElse("");
 
         return ServerResponse.ok()
-                .body(movieService.searchMovies(title), Object.class);
+                .body(movieService.searchMovies(title), Movie.class);
     }
 
     public Mono<ServerResponse> getMovie(ServerRequest request) {
@@ -40,18 +40,6 @@ public class MovieHandler {
                         ServerResponse.ok().bodyValue(movie));
     }
 
-    public Mono<ServerResponse> getShows(ServerRequest request) {
-
-        final UUID movieId = UUID.fromString(
-                request.pathVariable("movieId"));
-
-        final String city = request.queryParam("city")
-                .orElseThrow(() ->
-                        new RuntimeException("City is required"));
-
-        return ServerResponse.ok()
-                .body(showService.getShows(movieId, city), Object.class);
-    }
 
     //ADMIN only
     public Mono<ServerResponse> create(ServerRequest request) {

@@ -1,11 +1,15 @@
 package com.app.moviecatalog.v1.repository;
 
+import com.app.moviecatalog.v1.config.TestConfig;
 import com.app.moviecatalog.v1.domain.Theatre;
+import com.app.moviecatalog.v1.eventsream.publisher.ShowEventPublisher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.r2dbc.DataR2dbcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import reactor.test.StepVerifier;
 
@@ -14,6 +18,7 @@ import java.util.UUID;
 
 @DataR2dbcTest
 @ActiveProfiles("test")
+@Import(TestConfig.class)
 @DisplayName("TheatreRepository Tests")
 public class TheatreRepositoryTest {
     @Autowired
